@@ -1,15 +1,284 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title> Cơm rang rất ngon </title>
-	</head>
-	<body>
-		<h2> Em đi ăn cơm rang đây </h2>
-		<div>
-		 Vì rất đói nên em sẽ đi ăn và tạm biệt mọi người từ đây
-			Thân ái !
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Đăng ký tài khoản Zoom không giới hạn thời gian 40 phút">
+    <title>Zoom | Không giới hạn thời gian</title>
+    
+
+    <!-- Bootstrap core CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <!-- Favicons -->
+<link rel="apple-touch-icon" href="https://st1.zoom.us/zoom.ico" sizes="180x180">
+<link rel="icon" href="https://st1.zoom.us/zoom.ico" sizes="32x32" type="image/png">
+<meta name="theme-color" content="#2e8cff">
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+	  .password-feedback {
+	    display: none;
+		width: 100%;
+		margin-top: .25rem;
+		font-size: .875em;
+		color: #dc3545;
+	  }
+	  .password-feedback .valid {
+		color: #198754;
+	  }
+	  .spinner-border-md {
+		width: 1.5rem;
+		height: 1.5rem;
+		border: .2em solid currentColor;
+		border-right-color: transparent;
+	  }
+	  .grecaptcha-badge {
+        display: none !important;
+	  }
+	  .featurette-divider {
+		margin: 5rem 0;
+	  }
+	  .accordion-bold {
+	    font-weight: 600;
+	  }
+	  #tooltip {
+        background: #333;
+        color: white;
+        font-weight: bold;
+        padding: 4px 8px;
+        font-size: 13px;
+        border-radius: 4px;
+        display: none;
+      }
+
+      #tooltip[data-show] {
+        display: block;
+      }
+
+      #arrow,
+      #arrow::before {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background: inherit;
+      }
+
+      #arrow {
+        visibility: hidden;
+      }
+
+      #arrow::before {
+        visibility: visible;
+        content: '';
+        transform: rotate(45deg);
+      }
+
+      #tooltip[data-popper-placement^='top'] > #arrow {
+        bottom: -4px;
+      }
+
+      #tooltip[data-popper-placement^='bottom'] > #arrow {
+        top: -4px;
+      }
+
+      #tooltip[data-popper-placement^='left'] > #arrow {
+        right: -4px;
+      }
+
+      #tooltip[data-popper-placement^='right'] > #arrow {
+        left: -4px;
+      }
+	  a[target="_blank"]::after {
+	    content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==);
+	    margin: 0 3px 0 5px;
+	  }
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+  </head>
+  <body class="bg-light">
+
+<div aria-live="polite" aria-atomic="true" class="position-relative">
+  <!-- Position it: -->
+  <!-- - `.toast-container` for spacing between toasts -->
+  <!-- - `.position-absolute`, `top-0` & `end-0` to position the toasts in the upper right corner -->
+  <!-- - `.p-3` to prevent the toasts from sticking to the edge of the container  -->
+  <div class="toast-container position-absolute top-0 end-0 p-3">
+
+    <!-- Then put toasts within -->
+    <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <strong class="me-auto">Kết quả</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+      </div>
+    </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <main>
+    <div class="py-5 text-center">
+      <img class="d-block mx-auto mb-4" src="https://st1.zoom.us/static/94154/image/new/ZoomLogo.png" alt="">
+      <p class="lead">Đăng ký tài khoản Zoom không giới hạn thời gian 40 phút. Xem hướng dẫn trên <a href="https://youtu.be/LWxcd3Fok8c" target="_blank">Youtube</a></p>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2">
+        <h4 class="mb-3">Thông tin đăng ký tài khoản</h4>
+        <form id="form" class="needs-validation <!--was-validated-->" novalidate oninput='password2.setCustomValidity(password2.value != password.value ? "Mật khẩu nhập lại không hợp lệ." : "")'>
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <label for="firstName" class="form-label">Tên</label>
+              <input name="first_name" type="text" class="form-control" id="firstName" placeholder="" value="">
+            </div>
+
+            <div class="col-sm-6">
+              <label for="lastName" class="form-label">Họ và đệm</label>
+              <input name="last_name" type="text" class="form-control" id="lastName" placeholder="" value="">
+            </div>
+
+            <div class="col-12">
+              <label for="emailPrefix" class="form-label">
+				Email
+				<span id="help" aria-describedby="tooltip">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
+					  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+					  <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+					</svg>
+				</span>
+				<div id="tooltip" role="tooltip">Điền email bất kỳ
+					<div id="arrow" data-popper-arrow></div>
+				</div>
+			  </label>
+			  <div class="input-group mb-3 has-validation">
+				  <input name="email-prefix" type="text" class="form-control" id="emailPrefix" placeholder="" autocapitalize="none" required>
+				  <span class="input-group-text">@</span>
+				  <select name="domain" class="form-select" id="domain">
+					<option value="cstj.qc.ca">cstj.qc.ca</option><option value="lindenwood.edu">lindenwood.edu</option><option value="davietjal.org">davietjal.org</option><option value="somaiya.edu">somaiya.edu</option><option value="smccd.edu">smccd.edu</option><option value="digipen.edu">digipen.edu</option><option value="uasys.edu">uasys.edu</option><option value="ecpi.edu">ecpi.edu</option><option value="uvu.edu">uvu.edu</option><option value="wlc.edu">wlc.edu</option><option value="yosemite.edu">yosemite.edu</option><option value="tiffin.edu">tiffin.edu</option><option value="student.42.us.org">student.42.us.org</option><option value="keiseruniversity.edu">keiseruniversity.edu</option><option value="laverne.edu">laverne.edu</option><option value="touro.edu">touro.edu</option><option value="pointpark.edu">pointpark.edu</option><option value="art.edu">art.edu</option><option value="vaniercollege.qc.ca">vaniercollege.qc.ca</option><option value="fanshawec.ca">fanshawec.ca</option><option value="fanshaweonline.ca">fanshaweonline.ca</option><option value="neumann.edu">neumann.edu</option><option value="brescia.edu">brescia.edu</option><option value="mohawkcollege.ca">mohawkcollege.ca</option><option value="polk.edu">polk.edu</option><option value="btu.edu.ge">btu.edu.ge</option><option value="trinitybiblecollege.edu">trinitybiblecollege.edu</option><option value="hs-hannover.de">hs-hannover.de</option><option value="stud.hs-hannover.de">stud.hs-hannover.de</option><option value="everettcc.edu">everettcc.edu</option>				  </select>
+				  <div id="invalid-email" class="invalid-feedback">
+					Email không hợp lệ.
+				  </div>
+			  </div>
+            </div>
+			
+			<div class="col-sm-6">
+              <label for="password" class="form-label">Mật khẩu</label>
+              <input name="password" type="password" class="form-control" id="password" placeholder="" value="" pattern="(?=.*\d)(?=.*[a-zA-Z])(?=[A-Z]*[a-z])(?=[a-z]*[A-Z]).{8,}" required>
+			  <div class="password-feedback">
+				  <ul>
+					<li>Tối thiểu 8 ký tự</li>
+					<li>Chứa ít nhất 1 chữ cái</li>
+					<li>Chứa ít nhất 1 số</li>
+					<li>Chứa cả chữ thường và hoa</li>
+				  </ul>
+			  </div>
+            </div>
+			
+			<div class="col-sm-6">
+              <label for="password" class="form-label">Nhập lại mật khẩu</label>
+              <input name="password2" type="password" class="form-control" id="confirm-password" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                Mật khẩu nhập lại không khớp.
+              </div>
+            </div>
+			
+			<input type="hidden" name="recaptcha_response" id="recaptchaResponse">
+			
+          </div>
+
+          <hr class="my-4">
+
+          <button class="w-100 btn btn-primary btn-lg" type="submit">Đăng ký</button>
+        </form>
+		
+		<div id="result" style="display: none;">
+			<hr class="my-4">
+			
+			<div class="my-3 p-3 bg-white rounded shadow-sm">
+			  <h6 class="border-bottom border-gray pb-2 mb-0">Kết quả</h6>
+			  <div class="media text-muted pt-3">
+				<p id="message" class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+				</p>
+			  </div>
+			</div>
 		</div>
-			</body>
-	</body>
+		
+      </div>
+    </div>
+	
+	<hr class="featurette-divider">
+	
+	<div class="row g-3">
+	  <div class="col-md-10 offset-md-1">
+		<div class="accordion accordion-flush" id="accordionFlushExample">
+		  <div class="accordion-item">
+			<h2 class="accordion-header" id="flush-headingOne">
+			  <button class="accordion-button accordion-bold" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+				Hướng dẫn đăng ký mới tài khoản Zoom không giới hạn thời gian 40 phút
+			  </button>
+			</h2>
+			<div id="flush-collapseOne" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+			  <div class="accordion-body">
+			  <p>Đây là website giúp các thầy/cô đăng ký mới tài khoản Zoom, hoàn toàn không liên quan tới tài khoản Zoom cũ.
+			  </div>
+			</div>
+		  </div>
+		  <div class="accordion-item">
+			<h2 class="accordion-header" id="flush-headingTwo">
+			  <button class="accordion-button accordion-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+				Hướng dẫn thoát tài khoản cũ
+			  </button>
+			</h2>
+			<div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+			  <div class="accordion-body"><p>Trên máy tính, thực hiện các thao tác như hình để thoát tài khoản cũ:</p><img src="out.min.png" class="img-fluid" alt="Thoát tài khoản trên máy tính"></div>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </main>
+
+  <footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; 2021 Lê Trung Nguyên | Website được tạo ra vì mục đích phi lợi nhuận, nghiêm cấm mọi hình thức kinh doanh.</p>
+	<p class="mb-1"> This site is protected by reCAPTCHA and the Google
+		<a href="https://policies.google.com/privacy">Privacy Policy</a> and
+		<a href="https://policies.google.com/terms">Terms of Service</a> apply.
+	</p>
+  </footer>
+
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+	<script src="https://www.google.com/recaptcha/api.js?render=6LcJKmEaAAAAANbvUqpNdFXEdWaXylXK--G1yHhz"></script>
+	
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-4HVPH2F5SM"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-4HVPH2F5SM');
+	</script>
+
+	<script src="main.43d2eaa.js"></script> 
+  </body>
 </html>
